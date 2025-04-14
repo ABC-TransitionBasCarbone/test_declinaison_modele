@@ -1,6 +1,6 @@
 {
-  "name": "@incubateur-ademe/nosgestesclimat",
-  "version": "3.6.1",
+  "name": "@abc-transitionbascarbone/test_declinaison_modele",
+  "version": "1.0.0",
   "description": "Le modèle de calcul d'empreinte climat individuelle de consommation",
   "main": "index.js",
   "types": "index.d.ts",
