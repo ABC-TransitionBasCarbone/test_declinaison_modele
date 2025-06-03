@@ -2,7 +2,7 @@ divers . animaux domestiques:
   non applicable si: métrique != "carbone"
   titre: Animaux domestiques
   icônes: 🐶
-  formule: empreinte / logement . habitants
+  formule: empreinte
   description: |
     On parle ici d'animaux domestiques, dont l'augmentation de la population (environ 10 millions de chats en France en 2000
     contre 15 millions actuellement (2020)) est liée aux êtres humains (à l'inverse des animaux sauvages, dont l'Histoire semble
@@ -39,7 +39,6 @@ divers . animaux domestiques . empreinte:
   description: |
     Vous avez d'autres types d'animaux domestiques ? Nous considérerons que leur empreinte est négligeable.
 
-    L'empreinte des animaux domestiques est **divisée par le nombre d'habitants* du foyer pour obtenir une **empreinte individuelle**.
   mosaique:
     type: nombre
     options:

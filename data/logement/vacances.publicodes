@@ -57,8 +57,8 @@ logement . vacances:
   formule:
     variations:
       - si: choix utilisateur
-        alors: empreinte totale / habitants
-      - sinon: empreinte par défaut / habitants
+        alors: empreinte totale
+      - sinon: empreinte par défaut
 
 logement . vacances . empreinte totale:
   formule:

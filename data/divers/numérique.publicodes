@@ -69,7 +69,7 @@ divers . numérique:
 divers . numérique . internet:
   icônes: 🌐
   formule: empreinte horaire * durée journalière * commun . jours par an
-
+  
 divers . numérique . internet . consommation horaire:
   formule: 0.077
   unité: kWh/h
@@ -101,7 +101,27 @@ divers . numérique . internet . empreinte horaire:
   note: C'est une hypothèse forte car nous considérons ici les empreintes de mix électrique français.
 
 divers . numérique . internet . durée journalière:
-  question: Combien d'heures passez-vous par jour sur Internet hors bureau (envoi de mails, surf Web, streaming vidéo, etc.) ?
+  formule:
+    somme:
+      - divers . numérique . internet . durée journalière . membre 1
+      - divers . numérique . internet . durée journalière . membre 2
+
+
+divers . numérique . internet . durée journalière . membre 1:
+  question: Combien d'heures par jour le membre 1 passe t-il sur Internet hors bureau (envoi de mails, surf Web, streaming vidéo, etc.) ?
+  description: Les heures liées à votre activité professionnelle ne doivent pas être comptabilisées.
+  unité: h/jour
+  plancher: 0
+  plafond: 16
+  par défaut: 2.3
+  suggestions:
+    zéro: 0
+    modérément: 2
+    je ne décroche pas: 8
+  note: D'après Médiamétrie, les français ont passé en 2022, en moyenne, 2h18 sur Internet ([source](https://www.mediametrie.fr/fr/lannee-internet-2022))
+
+divers . numérique . internet . durée journalière . membre 2:
+  question: Combien d'heures par jour le membre 2 passe t-il sur Internet hors bureau (envoi de mails, surf Web, streaming vidéo, etc.) ?
   description: Les heures liées à votre activité professionnelle ne doivent pas être comptabilisées.
   unité: h/jour
   plancher: 0
@@ -126,52 +146,9 @@ divers . numérique . appareils:
       - console de salon . nombre
       - console portable . nombre
       - imprimante . nombre
-    suggestions:
-      aucun:
-        téléphone . nombre: 0
-        TV . nombre: 0
-        ordinateur portable . nombre: 0
-        ordinateur fixe . nombre: 0
-        tablette . nombre: 0
-        enceinte bluetooth . nombre: 0
-        console de salon . nombre: 0
-        console portable . nombre: 0
-        imprimante . nombre: 0
-      vie sans écran:
-        téléphone . nombre: 1
-        TV . nombre: 0
-        ordinateur portable . nombre: 1
-        ordinateur fixe . nombre: 0
-        tablette . nombre: 0
-        enceinte bluetooth . nombre: 1
-        console de salon . nombre: 0
-        console portable . nombre: 0
-        imprimante . nombre: 0
-      vie connectée:
-        téléphone . nombre: 1
-        TV . nombre: 1
-        ordinateur portable . nombre: 1
-        ordinateur fixe . nombre: 0
-        tablette . nombre: 1
-        enceinte bluetooth . nombre: 1
-        console de salon . nombre: 0
-        console portable . nombre: 0
-        imprimante . nombre: 1
-      gamer:
-        téléphone . nombre: 1
-        TV . nombre: 1
-        ordinateur portable . nombre: 1
-        ordinateur fixe . nombre: 1
-        tablette . nombre: 1
-        enceinte bluetooth . nombre: 1
-        console de salon . nombre: 1
-        console portable . nombre: 1
-        imprimante . nombre: 0
-  question: Quels appareils numériques possédez-vous ?
+  question: Quels sont tous les appareils numériques utilisés par les membres de votre foyer ?
   description: |
-    L'empreinte des **appareils partagés** au niveau du foyer (télévision ou ordinateur fixe par exemple) est **divisée par le nombre d'habitants**.
-
-    L'empreinte des **appareils individuels** (comme le téléphone portable) vous est **attribuée personnellement**.
+    Cela concerne autant les **appareils partagés** au niveau du foyer (télévision ou ordinateur fixe par exemple) que les **appareils individuels** (comme le téléphone portable).
   note: |
     Cette catégorie est un peu particulière au niveau de l'amortissement. En effet, à l'inverse de l'ameublement ou l'on considère que tout est partagé au sein du foyer,
     ici, certains appareils sont partagés alors que d'autres sont considérés comme étant individuels.

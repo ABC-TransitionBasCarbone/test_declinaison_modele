@@ -14,7 +14,7 @@ alimentation . déchets:
             - gestes
 
 alimentation . déchets . quantité jetée:
-  question: Comment estimeriez-vous la quantité de déchets que vous jetez ?
+  question: Comment estimeriez-vous la quantité de déchets jetée par votre foyer ?
   description: |
     Répondez 'Zéro Déchet' uniquement si vous traquez le moindre déchet et ne sortez (quasiment) jamais vos poubelles, et "je limite" sinon (nous vous questionnerons alors sur les actions que vous avez mises en œuvre).
   par défaut: "'base'"
@@ -24,13 +24,13 @@ alimentation . déchets . quantité jetée:
     - zéro déchet
 
 alimentation . déchets . quantité jetée . base:
-  titre: Je jette sans faire attention
+  titre: Nous jettons sans faire attention
 
 alimentation . déchets . quantité jetée . réduction:
-  titre: Je limite mes déchets
+  titre: Nous limitons nos déchets
 
 alimentation . déchets . quantité jetée . zéro déchet:
-  titre: Je suis zéro-déchet
+  titre: Nous sommes zéro-déchet
 
 alimentation . déchets . notif zéro déchet:
   type: notification
@@ -97,7 +97,7 @@ alimentation . déchets . gestes . compostage biodéchets . présent:
     Les biodéchets regroupent les déchets alimentaires (mais pas tous !), les papiers et cartons souillés et une partie des déchets verts.
 
 alimentation . déchets . gestes . compostage biodéchets:
-  titre: Je composte
+  titre: Nous compostons
   icônes: 🍃
   applicable si: présent
   formule: (-1) * bonus compostage biodéchets
@@ -144,7 +144,7 @@ alimentation . déchets . gestes . gaspillage alimentaire . présent:
     Si vous faites peu ou pas d'efforts pour éviter de jeter vos aliments, répondez non. En moyenne, le gaspillage alimentaire reste la norme.
 
 alimentation . déchets . gestes . gaspillage alimentaire:
-  titre: Je ne gaspille jamais d'aliments
+  titre: Nous ne gaspillons jamais d'aliments
   icônes: 🚯
   applicable si: présent
   formule: (-1) * empreinte gaspillage alimentaire
@@ -168,7 +168,7 @@ alimentation . déchets . gestes . stop pub . présent:
   par défaut: non
 
 alimentation . déchets . gestes . stop pub:
-  titre: J'ai un autocollant "stop pub"
+  titre: Nous avons un autocollant "stop pub"
   icônes: 📬
   applicable si: présent
   formule: (-1) * bonus stop pub

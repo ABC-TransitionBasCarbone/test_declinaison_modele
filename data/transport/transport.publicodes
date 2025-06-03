@@ -1,4 +1,5 @@
 transport:
+  applicable si: foyer . nombre personne >= 1
   titre: Transport
   abréviation: transp.
   icônes: 🚦
@@ -19,3 +20,70 @@ transport:
       - transports commun
       - vacances
       - ferry
+
+transport . foyer:
+  titre: Nombre de personnes dans le foyer
+  mosaique:
+    type: nombre
+    options:
+      - adulte parent . nombre
+      - adulte majeur . nombre
+      - ado . nombre
+      - enfant . nombre
+    suggestions:
+      couple:
+        adulte majeur . nombre: 2
+      famille de 4:
+        adulte parent . nombre: 2
+        ado . nombre: 1
+        enfant . nombre: 1
+      personnel seule:
+        adulte majeur . nombre: 1
+      coloc de 3:
+        adulte majeur . nombre: 3
+  question: Renseignez la composition de votre foyer ?
+  icônes: 👚
+  description: |
+    Blabla
+  note: |
+    Blabla
+
+transport . foyer . adulte parent:
+  titre: Adulte parent
+  icônes: 🧑
+  
+transport . foyer . adulte parent . nombre:
+  question: Nombre d'adulte de type parent dans le foyer
+  par défaut: 0
+
+transport . foyer . adulte majeur:
+  titre: Adulte majeur
+  icônes: 🧑
+
+transport . foyer . adulte majeur . nombre:
+  question: Nombre d'adulte majeur dans le foyer
+  par défaut: 1
+
+transport . foyer . ado:
+  titre: ado
+  icônes: 👦
+
+transport . foyer . ado . nombre:
+  question: Nombre d'ado dans le foyer
+  par défaut: 0
+
+transport . foyer . enfant:
+  titre: Enfant
+  icônes: 👶
+
+transport . foyer . enfant . nombre:
+  question: Nombre d'enfants dans le foyer
+  par défaut: 0
+
+transport . foyer . nombre personne:
+  formule:
+    somme:
+      - adulte parent . nombre
+      - adulte majeur . nombre
+      - ado . nombre
+      - enfant . nombre

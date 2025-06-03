@@ -161,7 +161,7 @@ logement . eau domestique . toilettes . quantité:
 
 logement . eau domestique . linge:
   icônes: 🧺
-  formule: foyer / logement . habitants
+  formule: foyer
 
 logement . eau domestique . linge . foyer:
   formule: par semaine * commun . semaines par an
@@ -185,7 +185,7 @@ logement . eau domestique . linge . quantité:
 
 logement . eau domestique . vaisselle:
   icônes: 🧽
-  formule: foyer / logement . habitants
+  formule: foyer
   note: |
     A priori, il est plus intéressant de demander si le foyer possède un lave-vaisselle puis la fréquence en attribuant un complément arbitraire "à la main".
     Si le foyer ne possède pas de lave-vaisselle, on peut simplement considérer que la vaiselle est faite à la main en considérant
@@ -291,7 +291,7 @@ logement . eau domestique . voiture:
 logement . eau domestique . jardin:
   applicable si: jardin . surface > 0
   non applicable si: logement . type = 'appartement'
-  formule: foyer / logement . habitants
+  formule: foyer
   note: Il sera nécessaire de demander si un récuparateur d'eau de pluie est installée.
 
 logement . eau domestique . jardin . foyer:

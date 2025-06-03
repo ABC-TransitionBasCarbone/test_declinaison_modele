@@ -11,8 +11,8 @@ divers . ameublement:
     Nous considérons que tous les meubles sont utilisés par l'ensemble du foyer, même si potentiellement, certains ne le sont qu'à titre individuel, c'est une limitation du test.
   formule:
     somme:
-      - meubles / logement . habitants
-      - déforestation / logement . habitants
+      - meubles
+      - déforestation
 
 divers . ameublement . meubles:
   titre: Ameublement
@@ -55,7 +55,7 @@ divers . ameublement . meubles:
         chaise . nombre: 0
         petit meuble . nombre: 0
         grand meuble . nombre: 0
-  question: Quels meubles de moins de 10 ans possédez-vous ?
+  question: Quels meubles de moins de 10 ans possédez-vous au sein du foyer ?
   formule:
     somme:
       - armoire
@@ -70,7 +70,6 @@ divers . ameublement . meubles:
   description: |
     Renseignez ici tout le mobilier que l'on retrouve dans votre logement.
 
-    L'empreinte du mobilier est **divisée par le nombre d'habitants** du logement pour obtenir une **empreinte individuelle**.
   note: |
     Les données sont toutes issues de la Base Carbone (achats de biens). Voir https://bilans-ges.ademe.fr/fr/accueil/documentation-gene/index/page/Mobilier.
 

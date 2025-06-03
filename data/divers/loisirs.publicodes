@@ -14,6 +14,18 @@ divers . loisirs:
 
 divers . loisirs . culture:
   icônes: 🎭
+  formule:
+    variations:
+      - si: divers . loisirs . culture . pratique
+        alors: pratiques culturelles communes
+      - sinon: pratiques culturelles individuelles
+
+divers . loisirs . culture . pratique:
+  question: Les membres de votre foyer ont-ils les mêmes pratiques culturelles ?
+  par défaut : oui
+
+divers . loisirs . culture . pratiques culturelles communes:
+  applicable si: divers . loisirs . culture . pratique = oui
   mosaique:
     type: selection
     options:
@@ -27,8 +39,60 @@ divers . loisirs . culture:
         musées et monuments . présent: non
         édition . présent: non
         pratique de la musique . présent: non
-  question: Quelles sont vos pratiques culturelles ?
-  titre: Pratiques culturelles
+  question: Quelles sont les pratiques culturelles communes dans votre foyer ?
+  titre: Pratiques culturelles communes
+  formule:
+    variations:
+      - si: choix utilisateur
+        alors: empreinte totale
+      - sinon: empreinte par défaut
+
+divers . loisirs . culture . pratiques culturelles individuelles:
+  applicable si: divers . loisirs . culture . pratique = non
+  titre: Pratiques culturelles individuelles
+  formule:
+    somme:
+      - membre 1
+      - membre 2
+
+divers . loisirs . culture . pratiques culturelles individuelles . membre 1:
+  mosaique:
+    type: selection
+    options:
+      - divers . loisirs . culture . concerts et spectacles . présent
+      - divers . loisirs . culture . musées et monuments . présent
+      - divers . loisirs . culture . édition . présent
+      - divers . loisirs . culture . pratique de la musique . présent
+    suggestions:
+      aucun:
+        divers . loisirs . culture . concerts et spectacles . présent: non
+        divers . loisirs . culture . musées et monuments . présent: non
+        divers . loisirs . culture . édition . présent: non
+        divers . loisirs . culture . pratique de la musique . présent: non
+  question: Quelles sont les pratiques culturelles du membre 1 ?
+  titre: Pratiques culturelles du membre 1
+  formule:
+    variations:
+      - si: choix utilisateur
+        alors: empreinte totale
+      - sinon: empreinte par défaut
+
+divers . loisirs . culture . pratiques culturelles individuelles . membre 2:
+  mosaique:
+    type: selection
+    options:
+      - divers . loisirs . culture . concerts et spectacles . présent
+      - divers . loisirs . culture . musées et monuments . présent
+      - divers . loisirs . culture . édition . présent
+      - divers . loisirs . culture . pratique de la musique . présent
+    suggestions:
+      aucun:
+        divers . loisirs . culture . concerts et spectacles . présent: non
+        divers . loisirs . culture . musées et monuments . présent: non
+        divers . loisirs . culture . édition . présent: non
+        divers . loisirs . culture . pratique de la musique . présent: non
+  question: Quelles sont les pratiques culturelles du membre 2 ?
+  titre: Pratiques culturelles du membre 2
   formule:
     variations:
       - si: choix utilisateur
@@ -358,6 +422,20 @@ divers . loisirs . culture . pratique de la musique . proportion de pratiquants:
 #     D'après [cette étude de 2020](https://www.vie-publique.fr/en-bref/274997-jeux-dargent-et-de-hasard-les-francais-jouent-moins-mais-misent-plus), à peu près la moitié des Français jouent à des jeux de hasard et d'argent.
 
 divers . loisirs . sports:
+  icônes: 🏟️
+  formule:
+    variations:
+      - si: divers . loisirs . sports . pratique
+        alors: pratiques sportives communes
+      - sinon: pratiques sportives individuelles
+
+
+divers . loisirs . sports . pratique:
+  question: Les membres de votre foyer ont-ils les mêmes pratiques sportives ?
+  par défaut: oui
+
+divers . loisirs . sports . pratiques sportives communes:
+  applicable si: divers . loisirs . sports . pratique
   mosaique:
     type: selection
     options:
@@ -387,19 +465,70 @@ divers . loisirs . sports:
         hiver montagne . présent: non
         sports énergivores . présent: non
         autres sports . présent: non
-  question: Quels sont les sports que vous pratiquez régulièrement ?
-  titre: Pratiques sportives
+  question: Quelles sont les pratiques sportives communes dans votre foyer ?
+  titre: Pratiques sportives communes
   formule:
     variations:
       - si: choix utilisateur
         alors: empreinte sportif
       - sinon: empreinte par défaut
-  note: |
-    La notion de régularité est volontairement imprécise, car elle dépend des sports pratiqués ainsi que du niveau du sportif.
 
-    Ainsi, on pourra estimer que faire de la voile une fois par mois est une pratique régulière, alors que faire un footing par mois est une pratique anecdotique.
+divers . loisirs . sports . pratiques sportives individuelles:
+  applicable si: divers . loisirs . sports . pratique = non
+  titre: Pratiques sportives individuelles
+  formule:
+    somme:
+      - membre 1
+      - membre 2
 
-    Également, un sportif "engagé" considérera qu'une pratique régulière implique plusieurs entraînements par semaine, quand un sportif plus amateur placera peut-être la barre un peu plus bas.
+divers . loisirs . sports . pratiques sportives individuelles . membre 1:
+  mosaique:
+    type: selection
+    options:
+      - divers . loisirs . sports . individuel extérieur . présent
+      - divers . loisirs . sports . balle ou ballon . présent
+      - divers . loisirs . sports . aquatique . présent
+      - divers . loisirs . sports . salle de sport . présent
+      - divers . loisirs . sports . martial ou combat . présent
+      - divers . loisirs . sports . athlétisme . présent
+      - divers . loisirs . sports . équitation . présent
+      - divers . loisirs . sports . golf . présent
+      - divers . loisirs . sports . nautique . présent
+      - divers . loisirs . sports . hiver montagne . présent
+      - divers . loisirs . sports . sports énergivores . présent
+      - divers . loisirs . sports . autres sports . présent
+  question: Quelles sont les pratiques sportives du membre 1 ?
+  titre: Pratiques sportives du membre 1
+  formule:
+    variations:
+      - si: divers . loisirs . sports . choix utilisateur . membre 1
+        alors: divers . loisirs . sports . empreinte sportif
+      - sinon: divers . loisirs . sports . empreinte par défaut
+
+divers . loisirs . sports . pratiques sportives individuelles . membre 2:
+  mosaique:
+    type: selection
+    options:
+      - divers . loisirs . sports . individuel extérieur . présent
+      - divers . loisirs . sports . balle ou ballon . présent
+      - divers . loisirs . sports . aquatique . présent
+      - divers . loisirs . sports . salle de sport . présent
+      - divers . loisirs . sports . martial ou combat . présent
+      - divers . loisirs . sports . athlétisme . présent
+      - divers . loisirs . sports . équitation . présent
+      - divers . loisirs . sports . golf . présent
+      - divers . loisirs . sports . nautique . présent
+      - divers . loisirs . sports . hiver montagne . présent
+      - divers . loisirs . sports . sports énergivores . présent
+      - divers . loisirs . sports . autres sports . présent
+  question: Quelles sont les pratiques sportives du membre 2 ?
+  titre: Pratiques sportives du membre 2
+  formule:
+    variations:
+      - si: divers . loisirs . sports . choix utilisateur . membre 2
+        alors: divers . loisirs . sports . empreinte sportif
+      - sinon: divers . loisirs . sports . empreinte par défaut
+
 
 divers . loisirs . sports . empreinte sportif:
   titre: Empreinte des loisirs sportifs
@@ -444,6 +573,40 @@ divers . loisirs . sports . choix utilisateur:
       - est défini: individuel extérieur . présent
       - est défini: salle de sport . présent
       - est défini: sports énergivores . présent
+
+divers . loisirs . sports . choix utilisateur . membre 1:
+  titre: Choix utilisateur pour les pratiques sportives
+  formule:
+    une de ces conditions:
+      - est défini: balle ou ballon . présent
+      - est défini: aquatique . présent
+      - est défini: martial ou combat . présent
+      - est défini: athlétisme . présent
+      - est défini: équitation . présent
+      - est défini: golf . présent
+      - est défini: nautique . présent
+      - est défini: hiver montagne . présent
+      - est défini: autres sports . présent
+      - est défini: individuel extérieur . présent
+      - est défini: salle de sport . présent
+      - est défini: sports énergivores . présent
+
+divers . loisirs . sports . choix utilisateur . membre 2:
+  titre: Choix utilisateur pour les pratiques sportives
+  formule:
+    une de ces conditions:
+      - est défini: balle ou ballon . présent
+      - est défini: aquatique . présent
+      - est défini: martial ou combat . présent
+      - est défini: athlétisme . présent
+      - est défini: équitation . présent
+      - est défini: golf . présent
+      - est défini: nautique . présent
+      - est défini: hiver montagne . présent
+      - est défini: autres sports . présent
+      - est défini: individuel extérieur . présent
+      - est défini: salle de sport . présent
+      - est défini: sports énergivores . présent            
 
 divers . loisirs . sports . individuel extérieur:
   titre: Sports individuels en extérieur
@@ -688,3 +851,5 @@ divers . loisirs . sports . empreinte SDES sport par français:
   note: |
     63% correspond au chiffre d'affaire de la sous-branche 'Activités liées au sport' de la branche 'Services sportifs, récréatifs et de loisirs'.
     ([Voir le détail de cette branche](https://nosgestesclimat.fr/documentation/empreinte-branche/R93-par-hab))
+
+
