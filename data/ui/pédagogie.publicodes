@@ -53,7 +53,8 @@ ui . pédagogie . sous catégories . transport . train:
 ui . pédagogie . sous catégories . transport . métro ou tram:
   icônes: 🚊
   titre: Métro, tramway, train de banlieue
-  valeur: transport . transports commun . métro ou tram
+  valeur: transport . transports commun . membre 1 . métro ou tram + transport . transports commun . membre 2 . métro ou tram + transport . transports commun . membre 3 . métro ou tram
+
 
 ui . pédagogie . sous catégories . transport . vacances:
   icônes: 🏖️

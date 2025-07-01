@@ -267,11 +267,11 @@ logement . eau domestique . hydratation . par jour:
 logement . eau domestique . voiture:
   applicable si:
     toutes ces conditions:
-      - transport . voiture . km > 0
-      - est défini: transport . voiture . utilisateur
+      - transport . voiture . membre 1 . km > 0
+      - est défini: transport . voiture . membre 1 . utilisateur
       - une de ces conditions:
-          - transport . voiture . utilisateur = 'propriétaire'
-          - transport . voiture . utilisateur = 'régulier non propriétaire'
+          - transport . voiture . membre 1 . utilisateur = 'propriétaire'
+          - transport . voiture . membre 1 . utilisateur = 'régulier non propriétaire'
   formule: 150 * 6
   unité: l
   # TODO : ajouter la source

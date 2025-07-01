@@ -1,4 +1,13 @@
 transport . deux roues:
+  titre: Somme des membres
+  formule:
+    somme:
+      - transport . deux roues . membre 1
+      - transport . deux roues . membre 2
+      - transport . deux roues . membre 3
+
+
+transport . deux roues . membre 1:
   icônes: 🛵
   formule:
     variations:
@@ -8,24 +17,24 @@ transport . deux roues:
       - sinon: empreinte moyenne
   unité: kgCO2e
 
-transport . deux roues . usager:
-  question: Utilisez-vous un scooter ou une moto ?
+transport . deux roues . membre 1 . usager:
+  question: (Membre 1) Utilisez-vous un scooter ou une moto ?
 
-transport . deux roues . empreinte:
+transport . deux roues . membre 1 . empreinte:
   icônes: 🛵
   formule: (empreinte au km + entretien pondéré) * km
   unité: kgCO2e
 
-transport . deux roues . empreinte moyenne:
-  valeur: deux roues . empreinte
+transport . deux roues . membre 1 . empreinte moyenne:
+  valeur: deux roues . membre 1 . empreinte
   contexte:
-    deux roues . usager: oui
-    deux roues . type: "'moto sup 250'"
-    deux roues . km: km annuels moyen * pourcentage motards
+    deux roues . membre 1 . usager: oui
+    deux roues . membre 1 . type: "'moto sup 250'"
+    deux roues . membre 1 . km: km annuels moyen * pourcentage motards
 
-transport . deux roues . km:
+transport . deux roues . membre 1 . km:
   applicable si: usager
-  question: Combien de km faites-vous à l'année avec votre scooter ou moto ?
+  question: (Membre 1) Combien de km faites-vous à l'année avec votre scooter ou moto ?
   par défaut: km annuels moyen
   plancher: 0
   plafond: 99999
@@ -37,15 +46,15 @@ transport . deux roues . km:
     1000km / mois: 12000
     20 000km / an: 20000
 
-transport . deux roues . km annuels moyen:
+transport . deux roues . membre 1 . km annuels moyen:
   formule: 3000
   unité: km
   note: |
     Source pour les km annuels moyens : [datalab ministère écologie 2019](https://www.statistiques.developpement-durable.gouv.fr/bilan-annuel-des-transports-en-2019-0), figure G1-1.
 
-transport . deux roues . type:
+transport . deux roues . membre 1 . type:
   applicable si: usager
-  question: Quelle est la motorisation de votre scooter ou moto ?
+  question: (Membre 1) Quelle est la motorisation de votre scooter ou moto ?
   par défaut: "'moto sup 250'"
   une possibilité:
     - scooter électrique
@@ -58,16 +67,16 @@ transport . deux roues . type:
     - Les motocyclettes légères (50 à 125 cm³) : 26,00 % du parc
     - Les motocyclettes lourdes (plus de 125 cm³) : 56,00 % du parc
 
-transport . deux roues . type . scooter électrique:
+transport . deux roues . membre 1 . type . scooter électrique:
   titre: Électrique
-transport . deux roues . type . scooter thermique:
+transport . deux roues . membre 1 . type . scooter thermique:
   titre: 50 cm³
-transport . deux roues . type . moto inf 250:
+transport . deux roues . membre 1 . type . moto inf 250:
   titre: Moins de 250 cm³
-transport . deux roues . type . moto sup 250:
+transport . deux roues . membre 1 . type . moto sup 250:
   titre: Plus de 250 cm³
 
-transport . deux roues . empreinte au km:
+transport . deux roues . membre 1 . empreinte au km:
   unité: kgCO2e/km
   formule:
     variations:
@@ -91,7 +100,7 @@ transport . deux roues . empreinte au km:
 
     Les chiffres ci-dessus incluent la fabrication du véhicule, contrairement aux données précédentes (2021).
 
-transport . deux roues . entretien pondéré:
+transport . deux roues . membre 1 . entretien pondéré:
   formule:
     variations:
       - si: type = 'scooter électrique'
@@ -100,16 +109,252 @@ transport . deux roues . entretien pondéré:
   unité: kgCO2e/km
   note: Nous choisissons de pondérer l'entretien des scooters électriques par le même facteur qui réduit celui des véhicules électriques par rapport aux véhicules thermiques.
 
-transport . deux roues . entretien:
+transport . deux roues . membre 1 . entretien:
   formule: empreinte branche . G45 * 1000000 kgCO2e/ktCO2e * 0.02 * 0.07 / ( 0.68 + 0.07 ) / nombre deux roues circulation / km annuels moyen
   unité: kgCO2e/km
   note: |
     Dans le poste G45, nous proratisons le poste Commerce et réparation de motocycles (2%) sur le même rapport que les voitures pour extraire l'entretien de ce poste comprenant également le commerce.
     Nous le divisons par le nombre de véhicules en circulation, puis par 3000 km (la moyenne de km effectués par véhicule) pour obtenir une empreinte en kgCO2e / km.
 
-transport . deux roues . nombre deux roues circulation:
+transport . deux roues . membre 1 . nombre deux roues circulation:
   formule: 2700000
   note: Le nombre de deux-roues en circulation en 2020, stable, est de [2,7 millions](https://www.onisr.securite-routiere.gouv.fr/etudes-et-recherches/vehicules/parc-des-vehicules/le-parc-deux-roues-motorises-des-menages)
 
-transport . deux roues . pourcentage motards:
+transport . deux roues . membre 1 . pourcentage motards:
+  formule: nombre deux roues circulation / population
+
+
+
+transport . deux roues . membre 2:
+  icônes: 🛵
+  formule:
+    variations:
+      - si:
+          est défini: usager
+        alors: empreinte
+      - sinon: empreinte moyenne
+  unité: kgCO2e
+
+transport . deux roues . membre 2 . usager:
+  question: (Membre 2) Utilisez-vous un scooter ou une moto ?
+
+transport . deux roues . membre 2 . empreinte:
+  icônes: 🛵
+  formule: (empreinte au km + entretien pondéré) * km
+  unité: kgCO2e
+
+transport . deux roues . membre 2 . empreinte moyenne:
+  valeur: deux roues . membre 2 . empreinte
+  contexte:
+    deux roues . membre 2 . usager: oui
+    deux roues . membre 2 . type: "'moto sup 250'"
+    deux roues . membre 2 . km: km annuels moyen * pourcentage motards
+
+transport . deux roues . membre 2 . km:
+  applicable si: usager
+  question: (Membre 2) Combien de km faites-vous à l'année avec votre scooter ou moto ?
+  par défaut: km annuels moyen
+  plancher: 0
+  plafond: 99999
+  unité: km
+  suggestions:
+    zéro: 0
+    vacances: 2000
+    10km / jour: 3600
+    1000km / mois: 12000
+    20 000km / an: 20000
+
+transport . deux roues . membre 2 . km annuels moyen:
+  formule: 3000
+  unité: km
+  note: |
+    Source pour les km annuels moyens : [datalab ministère écologie 2019](https://www.statistiques.developpement-durable.gouv.fr/bilan-annuel-des-transports-en-2019-0), figure G1-1.
+
+transport . deux roues . membre 2 . type:
+  applicable si: usager
+  question: (Membre 2) Quelle est la motorisation de votre scooter ou moto ?
+  par défaut: "'moto sup 250'"
+  une possibilité:
+    - scooter électrique
+    - scooter thermique
+    - moto inf 250
+    - moto sup 250
+  note: |
+    Le parc des deux-roues motorisés se divise en [3 catégories](https://www.inserr.fr/sites/default/files/public/7-parc_de_vehicules_en_circulation_0.pdf).
+    - Les cyclomoteurs (moins de 50 cm³) : 17,00 % du parc
+    - Les motocyclettes légères (50 à 125 cm³) : 26,00 % du parc
+    - Les motocyclettes lourdes (plus de 125 cm³) : 56,00 % du parc
+
+transport . deux roues . membre 2 . type . scooter électrique:
+  titre: Électrique
+transport . deux roues . membre 2 . type . scooter thermique:
+  titre: 50 cm³
+transport . deux roues . membre 2 . type . moto inf 250:
+  titre: Moins de 250 cm³
+transport . deux roues . membre 2 . type . moto sup 250:
+  titre: Plus de 250 cm³
+
+transport . deux roues . membre 2 . empreinte au km:
+  unité: kgCO2e/km
+  formule:
+    variations:
+      - si: type = 'scooter thermique'
+        alors: 0.0763 kgCO2e/km
+      - si: type = 'scooter électrique'
+        alors: 0.030 kgCO2e/km
+      - si: type = 'moto inf 250'
+        alors: 0.0763 kgCO2e/km
+      - si: type = 'moto sup 250'
+        alors: 0.191 kgCO2e/km
+
+  note: |
+    Cyclomoteur - Mixte - 2018 ; 76,3 gCO2e/km/personne ; calculs ADEME à partir d'HBEFA (2020)
+
+    Scooter électrique : 30 gCO2e/km/personne ; étude "Assessing the Environmental Performance of New Mobility" de l'International Transport Forum. [Excel disponible ici](https://www.itf-oecd.org/good-to-go-environmental-performance-new-mobility)
+
+    Moto =< 250 cm3 - Mixte - 2018 ; 76,3 gCO2e/km/personne ; calculs ADEME à partir d'HBEFA (2020)
+
+    Moto > 250 cm3 - Mixte - 2018 ; 191 gCO2e/km/personne ; calculs ADEME à partir d'HBEFA (2020)
+
+    Les chiffres ci-dessus incluent la fabrication du véhicule, contrairement aux données précédentes (2021).
+
+transport . deux roues . membre 2 . entretien pondéré:
+  formule:
+    variations:
+      - si: type = 'scooter électrique'
+        alors: entretien * 0.75
+      - sinon: entretien
+  unité: kgCO2e/km
+  note: Nous choisissons de pondérer l'entretien des scooters électriques par le même facteur qui réduit celui des véhicules électriques par rapport aux véhicules thermiques.
+
+transport . deux roues . membre 2 . entretien:
+  formule: empreinte branche . G45 * 1000000 kgCO2e/ktCO2e * 0.02 * 0.07 / ( 0.68 + 0.07 ) / nombre deux roues circulation / km annuels moyen
+  unité: kgCO2e/km
+  note: |
+    Dans le poste G45, nous proratisons le poste Commerce et réparation de motocycles (2%) sur le même rapport que les voitures pour extraire l'entretien de ce poste comprenant également le commerce.
+    Nous le divisons par le nombre de véhicules en circulation, puis par 3000 km (la moyenne de km effectués par véhicule) pour obtenir une empreinte en kgCO2e / km.
+
+transport . deux roues . membre 2 . nombre deux roues circulation:
+  formule: 2700000
+  note: Le nombre de deux-roues en circulation en 2020, stable, est de [2,7 millions](https://www.onisr.securite-routiere.gouv.fr/etudes-et-recherches/vehicules/parc-des-vehicules/le-parc-deux-roues-motorises-des-menages)
+
+transport . deux roues . membre 2 . pourcentage motards:
+  formule: nombre deux roues circulation / population
+
+
+
+transport . deux roues . membre 3:
+  icônes: 🛵
+  formule:
+    variations:
+      - si:
+          est défini: usager
+        alors: empreinte
+      - sinon: empreinte moyenne
+  unité: kgCO2e
+
+transport . deux roues . membre 3 . usager:
+  question: (Membre 3) Utilisez-vous un scooter ou une moto ?
+
+transport . deux roues . membre 3 . empreinte:
+  icônes: 🛵
+  formule: (empreinte au km + entretien pondéré) * km
+  unité: kgCO2e
+
+transport . deux roues . membre 3 . empreinte moyenne:
+  valeur: deux roues . membre 3 . empreinte
+  contexte:
+    deux roues . membre 3 . usager: oui
+    deux roues . membre 3 . type: "'moto sup 250'"
+    deux roues . membre 3 . km: km annuels moyen * pourcentage motards
+
+transport . deux roues . membre 3 . km:
+  applicable si: usager
+  question: (Membre 3) Combien de km faites-vous à l'année avec votre scooter ou moto ?
+  par défaut: km annuels moyen
+  plancher: 0
+  plafond: 99999
+  unité: km
+  suggestions:
+    zéro: 0
+    vacances: 2000
+    10km / jour: 3600
+    1000km / mois: 12000
+    20 000km / an: 20000
+
+transport . deux roues . membre 3 . km annuels moyen:
+  formule: 3000
+  unité: km
+  note: |
+    Source pour les km annuels moyens : [datalab ministère écologie 2019](https://www.statistiques.developpement-durable.gouv.fr/bilan-annuel-des-transports-en-2019-0), figure G1-1.
+
+transport . deux roues . membre 3 . type:
+  applicable si: usager
+  question: (Membre 3) Quelle est la motorisation de votre scooter ou moto ?
+  par défaut: "'moto sup 250'"
+  une possibilité:
+    - scooter électrique
+    - scooter thermique
+    - moto inf 250
+    - moto sup 250
+  note: |
+    Le parc des deux-roues motorisés se divise en [3 catégories](https://www.inserr.fr/sites/default/files/public/7-parc_de_vehicules_en_circulation_0.pdf).
+    - Les cyclomoteurs (moins de 50 cm³) : 17,00 % du parc
+    - Les motocyclettes légères (50 à 125 cm³) : 26,00 % du parc
+    - Les motocyclettes lourdes (plus de 125 cm³) : 56,00 % du parc
+
+transport . deux roues . membre 3 . type . scooter électrique:
+  titre: Électrique
+transport . deux roues . membre 3 . type . scooter thermique:
+  titre: 50 cm³
+transport . deux roues . membre 3 . type . moto inf 250:
+  titre: Moins de 250 cm³
+transport . deux roues . membre 3 . type . moto sup 250:
+  titre: Plus de 250 cm³
+
+transport . deux roues . membre 3 . empreinte au km:
+  unité: kgCO2e/km
+  formule:
+    variations:
+      - si: type = 'scooter thermique'
+        alors: 0.0763 kgCO2e/km
+      - si: type = 'scooter électrique'
+        alors: 0.030 kgCO2e/km
+      - si: type = 'moto inf 250'
+        alors: 0.0763 kgCO2e/km
+      - si: type = 'moto sup 250'
+        alors: 0.191 kgCO2e/km
+
+  note: |
+    Cyclomoteur - Mixte - 2018 ; 76,3 gCO2e/km/personne ; calculs ADEME à partir d'HBEFA (2020)
+
+    Scooter électrique : 30 gCO2e/km/personne ; étude "Assessing the Environmental Performance of New Mobility" de l'International Transport Forum. [Excel disponible ici](https://www.itf-oecd.org/good-to-go-environmental-performance-new-mobility)
+
+    Moto =< 250 cm3 - Mixte - 2018 ; 76,3 gCO2e/km/personne ; calculs ADEME à partir d'HBEFA (2020)
+
+    Moto > 250 cm3 - Mixte - 2018 ; 191 gCO2e/km/personne ; calculs ADEME à partir d'HBEFA (2020)
+
+    Les chiffres ci-dessus incluent la fabrication du véhicule, contrairement aux données précédentes (2021).
+
+transport . deux roues . membre 3 . entretien pondéré:
+  formule:
+    variations:
+      - si: type = 'scooter électrique'
+        alors: entretien * 0.75
+      - sinon: entretien
+  unité: kgCO2e/km
+  note: Nous choisissons de pondérer l'entretien des scooters électriques par le même facteur qui réduit celui des véhicules électriques par rapport aux véhicules thermiques.
+
+transport . deux roues . membre 3 . entretien:
+  formule: empreinte branche . G45 * 1000000 kgCO2e/ktCO2e * 0.02 * 0.07 / ( 0.68 + 0.07 ) / nombre deux roues circulation / km annuels moyen
+  unité: kgCO2e/km
+  note: |
+    Dans le poste G45, nous proratisons le poste Commerce et réparation de motocycles (2%) sur le même rapport que les voitures pour extraire l'entretien de ce poste comprenant également le commerce.
+    Nous le divisons par le nombre de véhicules en circulation, puis par 3000 km (la moyenne de km effectués par véhicule) pour obtenir une empreinte en kgCO2e / km.
+
+transport . deux roues . membre 3 . nombre deux roues circulation:
+  formule: 2700000
+  note: Le nombre de deux-roues en circulation en 2020, stable, est de [2,7 millions](https://www.onisr.securite-routiere.gouv.fr/etudes-et-recherches/vehicules/parc-des-vehicules/le-parc-deux-roues-motorises-des-menages)
+
+transport . deux roues . membre 3 . pourcentage motards:
   formule: nombre deux roues circulation / population

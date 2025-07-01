@@ -13,7 +13,7 @@ transport . vacances:
         camping car . propriétaire: non
         van . propriétaire: non
         bateau plaisance . propriétaire: non
-  question: Quels véhicules possédez-vous pour vos loisirs (hors véhicule principal) ?
+  question: Quels véhicules possédez-vous pour vos loisirs (hors véhicule principal), et qui ne sont utilisés que par des membres du foyer ?
   icônes: 🏖
   description: |
     La catégorie "van aménagé" comprend les fourgons et camionettes aménagés.
@@ -54,7 +54,7 @@ transport . vacances . caravane:
   icônes: 🚎
   applicable si:
     toutes ces conditions:
-      - transport . voiture . km > 0
+      - transport . voiture . membre 1 . km > 0
       - propriétaire
   formule: usage réel + construction amortie
   note: |
@@ -66,11 +66,11 @@ transport . vacances . caravane . propriétaire:
 
 transport . vacances . caravane . usage réel:
   titre: Usage Caravane
-  formule: (surconsommation * distance) / logement . habitants
+  formule: (surconsommation * distance)
   unité: kgCO2e
 
 transport . vacances . caravane . surconsommation:
-  formule: voiture . empreinte au kilomètre * ratio surconsommation
+  formule: voiture . membre 1 . empreinte au kilomètre * ratio surconsommation
 
 transport . vacances . caravane . ratio surconsommation:
   formule: 0.25
@@ -91,11 +91,11 @@ transport . vacances . caravane . distance:
 
 transport . vacances . caravane . construction amortie:
   titre: Construction de la caravane
-  formule: (construction / durée de vie) / logement . habitants
+  formule: (construction / durée de vie)
   unité: kgCO2e
 
 transport . vacances . caravane . construction:
-  formule: voiture . barème construction . barème thermique . empreinte par kg * caravane . poids
+  formule: voiture . membre 1 . barème construction . barème thermique . empreinte par kg * caravane . poids
   unité: kgCO2e
   note: |
     On extrapole l'impact de la fabrication d'une caravane car à partir d'un ratio sur le poids et en considérant les données de construction "Berline" (6300 kgCO2e et 1500 kg)
@@ -131,16 +131,16 @@ transport . vacances . camping car . propriétaire:
 
 transport . vacances . camping car . usage réel:
   titre: Usage Camping Car
-  formule: usage / logement . habitants
+  formule: usage
   unité: kgCO2e
 
 transport . vacances . camping car . construction amortie:
   titre: Construction du camping car
-  formule: (construction / durée de vie) / logement . habitants
+  formule: (construction / durée de vie)
   unité: kgCO2e
 
 transport . vacances . camping car . construction:
-  formule: voiture . barème construction . barème thermique . empreinte par kg * camping car . poids
+  formule: voiture . membre 1 . barème construction . barème thermique . empreinte par kg * camping car . poids
   unité: kgCO2e
 
 transport . vacances . camping car . poids:
@@ -210,7 +210,7 @@ transport . vacances . van . propriétaire:
 
 transport . vacances . van . usage réel:
   titre: Usage van
-  formule: usage / logement . habitants
+  formule: usage
   unité: kgCO2e
 
 transport . vacances . van . usage:
@@ -255,11 +255,11 @@ transport . vacances . van . empreinte au litre:
 
 transport . vacances . van . construction amortie:
   titre: Construction du van
-  formule: (construction / durée de vie) / logement . habitants
+  formule: (construction / durée de vie)
   unité: kgCO2e
 
 transport . vacances . van . construction:
-  formule: voiture . barème construction . barème thermique . empreinte par kg * van . poids
+  formule: voiture . membre 1 . barème construction . barème thermique . empreinte par kg * van . poids
   unité: kgCO2e
 
 transport . vacances . van . poids:

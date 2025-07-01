@@ -10,8 +10,12 @@ ui . organisations . transport . roule en vélo:
   icônes: 🚴
   formule:
     une de ces conditions:
-      - transport . mobilité douce . vélo . présent
-      - transport . mobilité douce . vae . présent
+      - transport . mobilité douce . membre 1 . vélo . présent
+      - transport . mobilité douce . membre 1 . vae . présent
+      - transport . mobilité douce . membre 3 . vélo . présent
+      - transport . mobilité douce . membre 3 . vae . présent
+      - transport . mobilité douce . membre 2 . vélo . présent
+      - transport . mobilité douce . membre 2 . vae . présent
   unité: '%'
 
 ui . organisations . transport . roule en voiture:
@@ -19,7 +23,7 @@ ui . organisations . transport . roule en voiture:
   icônes: 🚗
   formule:
     toutes ces conditions:
-      - transport . voiture . km > 0
+      - transport . voiture . membre 1 . km > 0
   unité: '%'
 
 ui . organisations . transport . prend l'avion:
@@ -27,7 +31,9 @@ ui . organisations . transport . prend l'avion:
   icônes: ✈️
   formule:
     toutes ces conditions:
-      - transport . avion . usager
+      - transport . avion . membre 1 . usager
+      - transport . avion . membre 2 . usager
+      - transport . avion . membre 3 . usager
   unité: '%'
 
 ui . organisations . transport . prend l'avion long courrier:
@@ -35,7 +41,9 @@ ui . organisations . transport . prend l'avion long courrier:
   icônes: ✈️
   formule:
     toutes ces conditions:
-      - transport . avion . long courrier . heures de vol > 0
+      - transport . avion . membre 1 . long courrier . heures de vol > 0
+      - transport . avion . membre 2 . long courrier . heures de vol > 0
+      - transport . avion . membre 3 . long courrier . heures de vol > 0
   unité: '%'
 
 ui . organisations . transport . km en voiture:
@@ -43,7 +51,7 @@ ui . organisations . transport . km en voiture:
   icônes: 🚗
   formule:
     moyenne:
-      - transport . voiture . km
+      - transport . voiture . membre 1 . km
   unité: km
 
 ui . organisations . transport . voyageurs en voiture:
@@ -51,7 +59,7 @@ ui . organisations . transport . voyageurs en voiture:
   icônes: 👥
   formule:
     moyenne:
-      - transport . voiture . voyageurs
+      - transport . voiture . membre 1 . voyageurs
 
 ui . organisations . logement:
   titre: Logement
