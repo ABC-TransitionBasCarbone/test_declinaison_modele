@@ -3,7 +3,11 @@ transport . train:
   icônes: 🚋
   description: |
     ![](https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/TER_Vesoul.jpg/640px-TER_Vesoul.jpg)
-  formule: km * impact par km
+  formule:
+    somme : 
+      - km membre 1 * impact par km
+      - km membre 2 * impact par km
+      - km membre 3 * impact par km
 
 transport . train . impact par km:
   formule:
@@ -80,8 +84,36 @@ transport . train . passagers km intercités:
     Chiffres issus de l'[autorité de régulation des transports](https://www.autorite-transports.fr/wp-content/uploads/2023/06/bilan-ferroviaire-2022-a-mi-2023.pdf).
     On omet ici les trajets en RER et transilien.
 
-transport . train . km:
-  question: Combien de kilomètres parcourez-vous en train par an ?
+transport . train . km membre 1:
+  question: (Membre 1) Combien de kilomètres parcourez-vous en train par an ?
+  description: Les suggestions sont sur la base d'un aller-retour.
+  suggestions:
+    traversée d'une région: 300
+    Paris ⇄ Lyon: 800
+    Brest ⇄ Nice: 2400
+    💳 grand voyageur: 10000
+    💳 grand voyageur plus ultra: 25000
+  unité: km
+  plancher: 0
+  plafond: 99999
+  par défaut: 1000
+
+transport . train . km membre 2:
+  question: (Membre 2) Combien de kilomètres parcourez-vous en train par an ?
+  description: Les suggestions sont sur la base d'un aller-retour.
+  suggestions:
+    traversée d'une région: 300
+    Paris ⇄ Lyon: 800
+    Brest ⇄ Nice: 2400
+    💳 grand voyageur: 10000
+    💳 grand voyageur plus ultra: 25000
+  unité: km
+  plancher: 0
+  plafond: 99999
+  par défaut: 1000
+
+transport . train . km membre 3:
+  question: (Membre 3) Combien de kilomètres parcourez-vous en train par an ?
   description: Les suggestions sont sur la base d'un aller-retour.
   suggestions:
     traversée d'une région: 300

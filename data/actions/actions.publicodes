@@ -42,23 +42,23 @@ actions:
       - logement . mutualiser son logement
       - logement . installer photovoltaique
       - logement . électricité verte
-      - transport . avion . arrêter l'avion
-      - transport . avion . arrêter l'avion court
-      - transport . avion . prendre moins l'avion
-      - transport . voiture . éco-conduite
-      - transport . voiture . faire durer
-      - transport . voiture . réduire taille
-      - transport . voiture . autopartage
-      - transport . voiture . covoiturage
-      - transport . voiture . voiture 5km
-      - transport . voiture . voiture électrique
-      - transport . voiture . limitation autoroute
-      - transport . voiture . boulot . faire du covoiturage
-      - transport . voiture . boulot . sans voiture
-      - transport . voiture . boulot . télétravail
-      - transport . deux roues . scooter électrique
-      - transport . ferry . arrêter ferry
-      - transport . ferry . réduire ferry
+# #      - transport . avion . arrêter l'avion
+# #      - transport . avion . arrêter l'avion court
+# #      - transport . avion . prendre moins l'avion
+#       - transport . voiture . éco-conduite
+#       - transport . voiture . faire durer
+#       - transport . voiture . réduire taille
+#       - transport . voiture . autopartage
+#       - transport . voiture . covoiturage
+#       - transport . voiture . voiture 5km
+#       - transport . voiture . voiture électrique
+#       - transport . voiture . limitation autoroute
+#       - transport . voiture . boulot . faire du covoiturage
+#       - transport . voiture . boulot . sans voiture
+#       - transport . voiture . boulot . télétravail
+#       - transport . deux roues . scooter électrique
+      # - transport . ferry . arrêter ferry
+      # - transport . ferry . réduire ferry
       - transport . infolettre
       - divers . partage NGC
       - divers . aider les autres

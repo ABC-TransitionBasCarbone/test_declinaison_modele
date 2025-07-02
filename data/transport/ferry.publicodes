@@ -36,6 +36,15 @@ importer!:
         question:
 
 transport . ferry:
+  titre: Ferry (par membre)
+  somme:
+    - transport . ferry . membre 1
+    - transport . ferry . membre 2
+    - transport . ferry . membre 3
+  unité: kgCO2e
+
+
+transport . ferry . membre 1:
   titre: Ferry
   icônes: ⛴
   formule:
@@ -46,7 +55,7 @@ transport . ferry:
       - sinon: empreinte moyenne
   unité: kgCO2e
 
-transport . ferry . empreinte:
+transport . ferry . membre 1 . empreinte:
   applicable si: usager
   formule: heures * futureco-data . transport . ferry . vitesse moyenne . métrique * futureco-data . transport . ferry . empreinte par km volume
   description: |
@@ -59,18 +68,18 @@ transport . ferry . empreinte:
       - 2 personnes partagent la cabine, la voiture
       - Modèle de ferry considéré (plan, vitesse moyenne) : [Méga Express Four](https://www.greenferries.org/ships/mega-express-four-9086590/)
 
-transport . ferry . usager:
-  question: Avez-vous pris le ferry cette année ?
+transport . ferry . membre 1 . usager:
+  question: (Membre 1) Avez-vous pris le ferry cette année ?
   description: |
     Répondez également oui si vous êtes part en croisière (de longs voyages où vous habitez sur le bateau) : dans un premier temps, nous comptabilisons de la même façon les heures de ferry et de croisière.
 
-transport . ferry . empreinte moyenne:
-  valeur: ferry . empreinte
+transport . ferry . membre 1 . empreinte moyenne:
+  valeur: ferry . membre 1 . empreinte
   contexte:
     usager: oui
     heures: durée moyenne par français
 
-transport . ferry . empreinte moyenne . durée moyenne par français:
+transport . ferry . membre 1 . empreinte moyenne . durée moyenne par français:
   formule: (10000000 / population) * 8 h
   unité: h
   note: |
@@ -83,9 +92,163 @@ transport . ferry . empreinte moyenne . durée moyenne par français:
 
     On fait donc une hypothèse forte ici en estimant que 10 millions de français voyagent en ferry chaque année pour une durée moyenne de 8 heures.
 
-transport . ferry . heures:
+transport . ferry . membre 1 . heures:
   titre: Heures de ferry dans l'année
-  question: Combien d'heures avez-vous passé sur un ferry ?
+  question: (Membre 1) Combien d'heures avez-vous passé sur un ferry ?
+  description: |
+    Pour un usage plutôt de type "croisière", estimez le nombre d'heures passées à vous déplacer au cours de la croisière (la plupart du temps, ces déplacements se déroulent la nuit).
+
+    Si vous connaissez plutôt la distance parcourue, sachez qu'en moyenne, un bateau de croisière avance à une vitesse qui avoisine les 20 nœuds, ou presque 40 km/h. Mettez donc 10h pour 200 milles nautiques, ou 400 km parcourus.
+  par défaut: 8
+  plancher: 0
+  plafond: 800
+  unité: h
+  suggestions:
+    Cherbourg ⇄ 🇬🇧 Poole: 8
+    Marseille ⇄ 🏝️ Ajaccio: 22
+    Marseille ⇄ 🇩🇿 Alger: 50
+  note: |
+    Pour l'instant, nous ne prenons pas en compte les options qui peuvent augmenter ou diminuer l'empreinte d'une traversée en ferry :
+      - voiture embarquée à bord
+      - remplissage de la cabine ou réservation d'un siège
+      - utilisation des services à bord (restaurant, boutiques)
+      - et bien sûr la vitesse du bateau (plus un bateau est rapide, plus il consomme).
+
+    Le calcul est donc fait pour une traversée type.
+
+    Selon les chiffres du [SDES](https://www.statistiques.developpement-durable.gouv.fr/edition-numerique/chiffres-cles-transport-2021/17-transport-maritime-de-voyageurs),
+    les trajets en ferry sont majoritairement effectués sur la Manche / mer du Nord, que l'on peut approximer à des voyages "Cherbourg-Poole" (8h aller-retour).
+
+
+
+transport . ferry . membre 2:
+  titre: Ferry
+  icônes: ⛴
+  formule:
+    variations:
+      - si:
+          est défini: usager
+        alors: empreinte
+      - sinon: empreinte moyenne
+  unité: kgCO2e
+
+transport . ferry . membre 2 . empreinte:
+  applicable si: usager
+  formule: heures * futureco-data . transport . ferry . vitesse moyenne . métrique * futureco-data . transport . ferry . empreinte par km volume
+  description: |
+    Le modèle ferry provient de [Futur.eco](https://futur.eco/ferry).
+    Ce modèle est explicité de manière simplifiée sur la page ["Empreinte par km et passager"](https://nosgestesclimat.fr/documentation/transport/ferry/empreinte-par-km-volume), et basé sur une étude approfondie ([voir la note méthodo complète](https://hackmd.io/@laem/empreinte-ferry))
+
+    Afin de simplifier pour l'utilisateur l'évaluation de son empreinte, nous proposons une estimation via la durée des voyages (en heure). Nous fixons ainsi les autres paramètres du calcul comme tels:
+      - Voyage en cabine
+      - Une voiture à bord
+      - 2 personnes partagent la cabine, la voiture
+      - Modèle de ferry considéré (plan, vitesse moyenne) : [Méga Express Four](https://www.greenferries.org/ships/mega-express-four-9086590/)
+
+transport . ferry . membre 2 . usager:
+  question: (Membre 2) Avez-vous pris le ferry cette année ?
+  description: |
+    Répondez également oui si vous êtes part en croisière (de longs voyages où vous habitez sur le bateau) : dans un premier temps, nous comptabilisons de la même façon les heures de ferry et de croisière.
+
+transport . ferry . membre 2 . empreinte moyenne:
+  valeur: ferry . membre 2 . empreinte
+  contexte:
+    usager: oui
+    heures: durée moyenne par français
+
+transport . ferry . membre 2 . empreinte moyenne . durée moyenne par français:
+  formule: (10000000 / population) * 8 h
+  unité: h
+  note: |
+    Selon les chiffres du [SDES](https://www.statistiques.developpement-durable.gouv.fr/edition-numerique/chiffres-cles-transport-2021/17-transport-maritime-de-voyageurs),
+    environ 22,9 millions de voyageurs, hors croisiéristes, ont embarqués et débarqués en France métropolitaine en 2019 (2020 exclu car année COVID non représentative).
+
+    Néanmoins, on ne connaît pas la propotion de voyageurs uniques, ni si ce sont des voyageurs français... Encore moins la distance que les voyageurs parcourent.
+
+    Les trajets en ferry sont majoritairement effectués sur la Manche / mer du Nord, que l'on peut approximer à des voyages "Cherbourg-Poole" (8h aller-retour).
+
+    On fait donc une hypothèse forte ici en estimant que 10 millions de français voyagent en ferry chaque année pour une durée moyenne de 8 heures.
+
+transport . ferry . membre 2 . heures:
+  titre: Heures de ferry dans l'année
+  question: (Membre 2) Combien d'heures avez-vous passé sur un ferry ?
+  description: |
+    Pour un usage plutôt de type "croisière", estimez le nombre d'heures passées à vous déplacer au cours de la croisière (la plupart du temps, ces déplacements se déroulent la nuit).
+
+    Si vous connaissez plutôt la distance parcourue, sachez qu'en moyenne, un bateau de croisière avance à une vitesse qui avoisine les 20 nœuds, ou presque 40 km/h. Mettez donc 10h pour 200 milles nautiques, ou 400 km parcourus.
+  par défaut: 8
+  plancher: 0
+  plafond: 800
+  unité: h
+  suggestions:
+    Cherbourg ⇄ 🇬🇧 Poole: 8
+    Marseille ⇄ 🏝️ Ajaccio: 22
+    Marseille ⇄ 🇩🇿 Alger: 50
+  note: |
+    Pour l'instant, nous ne prenons pas en compte les options qui peuvent augmenter ou diminuer l'empreinte d'une traversée en ferry :
+      - voiture embarquée à bord
+      - remplissage de la cabine ou réservation d'un siège
+      - utilisation des services à bord (restaurant, boutiques)
+      - et bien sûr la vitesse du bateau (plus un bateau est rapide, plus il consomme).
+
+    Le calcul est donc fait pour une traversée type.
+
+    Selon les chiffres du [SDES](https://www.statistiques.developpement-durable.gouv.fr/edition-numerique/chiffres-cles-transport-2021/17-transport-maritime-de-voyageurs),
+    les trajets en ferry sont majoritairement effectués sur la Manche / mer du Nord, que l'on peut approximer à des voyages "Cherbourg-Poole" (8h aller-retour).
+
+
+
+transport . ferry . membre 3:
+  titre: Ferry
+  icônes: ⛴
+  formule:
+    variations:
+      - si:
+          est défini: usager
+        alors: empreinte
+      - sinon: empreinte moyenne
+  unité: kgCO2e
+
+transport . ferry . membre 3 . empreinte:
+  applicable si: usager
+  formule: heures * futureco-data . transport . ferry . vitesse moyenne . métrique * futureco-data . transport . ferry . empreinte par km volume
+  description: |
+    Le modèle ferry provient de [Futur.eco](https://futur.eco/ferry).
+    Ce modèle est explicité de manière simplifiée sur la page ["Empreinte par km et passager"](https://nosgestesclimat.fr/documentation/transport/ferry/empreinte-par-km-volume), et basé sur une étude approfondie ([voir la note méthodo complète](https://hackmd.io/@laem/empreinte-ferry))
+
+    Afin de simplifier pour l'utilisateur l'évaluation de son empreinte, nous proposons une estimation via la durée des voyages (en heure). Nous fixons ainsi les autres paramètres du calcul comme tels:
+      - Voyage en cabine
+      - Une voiture à bord
+      - 2 personnes partagent la cabine, la voiture
+      - Modèle de ferry considéré (plan, vitesse moyenne) : [Méga Express Four](https://www.greenferries.org/ships/mega-express-four-9086590/)
+
+transport . ferry . membre 3 . usager:
+  question: (Membre 3) Avez-vous pris le ferry cette année ?
+  description: |
+    Répondez également oui si vous êtes part en croisière (de longs voyages où vous habitez sur le bateau) : dans un premier temps, nous comptabilisons de la même façon les heures de ferry et de croisière.
+
+transport . ferry . membre 3 . empreinte moyenne:
+  valeur: ferry . membre 3 . empreinte
+  contexte:
+    usager: oui
+    heures: durée moyenne par français
+
+transport . ferry . membre 3 . empreinte moyenne . durée moyenne par français:
+  formule: (10000000 / population) * 8 h
+  unité: h
+  note: |
+    Selon les chiffres du [SDES](https://www.statistiques.developpement-durable.gouv.fr/edition-numerique/chiffres-cles-transport-2021/17-transport-maritime-de-voyageurs),
+    environ 22,9 millions de voyageurs, hors croisiéristes, ont embarqués et débarqués en France métropolitaine en 2019 (2020 exclu car année COVID non représentative).
+
+    Néanmoins, on ne connaît pas la propotion de voyageurs uniques, ni si ce sont des voyageurs français... Encore moins la distance que les voyageurs parcourent.
+
+    Les trajets en ferry sont majoritairement effectués sur la Manche / mer du Nord, que l'on peut approximer à des voyages "Cherbourg-Poole" (8h aller-retour).
+
+    On fait donc une hypothèse forte ici en estimant que 10 millions de français voyagent en ferry chaque année pour une durée moyenne de 8 heures.
+
+transport . ferry . membre 3 . heures:
+  titre: Heures de ferry dans l'année
+  question: (Membre 3) Combien d'heures avez-vous passé sur un ferry ?
   description: |
     Pour un usage plutôt de type "croisière", estimez le nombre d'heures passées à vous déplacer au cours de la croisière (la plupart du temps, ces déplacements se déroulent la nuit).
 
