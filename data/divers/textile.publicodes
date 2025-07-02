@@ -3,9 +3,15 @@ divers . textile:
   formule:
     somme:
       - empreinte
-      - déforestation
+      - déforestation * transport . foyer . nombre personne
 
 divers . textile . empreinte:
+  formule:
+    somme:
+      - divers . textile . empreinte . membre 1
+      - divers . textile . empreinte . membre 2
+
+divers . textile . empreinte . membre 1:
   titre: Empreinte de sa garde-robe
   mosaique:
     type: nombre
@@ -70,7 +76,93 @@ divers . textile . empreinte:
         manteau . nombre: 1
         petit article . nombre: 20
         gros article . nombre: 1
-  question: Quels vêtements achetez-vous neufs en général dans une année ?
+  question: Membre 1, quels vêtements achetez-vous neufs en général dans une année ?
+  icônes: 👚
+  formule:
+    somme:
+      - t-shirt
+      - pantalon
+      - short
+      - sweat
+      - robe
+      - chemise
+      - pull
+      - chaussure
+      - manteau
+      - petit article
+      - gros article
+  description: |
+    À ce stade, nous excluons du calcul l'achat en friperies, la récupération, l'occasion.
+
+    Les achats dont la fréquence est supérieure à 2 ans sont jugés comme négligeables.
+
+
+divers . textile . empreinte . membre 2:
+  titre: Empreinte de sa garde-robe
+  mosaique:
+    type: nombre
+    options:
+      - t-shirt . nombre
+      - pantalon . nombre
+      - short . nombre
+      - sweat . nombre
+      - robe . nombre
+      - chemise . nombre
+      - pull . nombre
+      - chaussure . nombre
+      - manteau . nombre
+      - petit article . nombre
+      - gros article . nombre
+    suggestions:
+      aucun:
+        t-shirt . nombre: 0
+        pantalon . nombre: 0
+        short . nombre: 0
+        sweat . nombre: 0
+        robe . nombre: 0
+        chemise . nombre: 0
+        pull . nombre: 0
+        chaussure . nombre: 0
+        manteau . nombre: 0
+        petit article . nombre: 0
+        gros article . nombre: 0
+      juste des sous-vêtements:
+        t-shirt . nombre: 0
+        pantalon . nombre: 0
+        short . nombre: 0
+        sweat . nombre: 0
+        robe . nombre: 0
+        chemise . nombre: 0
+        pull . nombre: 0
+        chaussure . nombre: 0
+        manteau . nombre: 0
+        petit article . nombre: 18
+        gros article . nombre: 0
+      petite garde-robe:
+        t-shirt . nombre: 4
+        pantalon . nombre: 1
+        short . nombre: 1
+        sweat . nombre: 1
+        robe . nombre: 1
+        chemise . nombre: 0
+        pull . nombre: 1
+        chaussure . nombre: 2
+        manteau . nombre: 0
+        petit article . nombre: 18
+        gros article . nombre: 1
+      accro au shopping:
+        t-shirt . nombre: 8
+        pantalon . nombre: 3
+        short . nombre: 2
+        sweat . nombre: 2
+        robe . nombre: 3
+        chemise . nombre: 2
+        pull . nombre: 1
+        chaussure . nombre: 3
+        manteau . nombre: 1
+        petit article . nombre: 20
+        gros article . nombre: 1
+  question: Membre 2, quels vêtements achetez-vous neufs en général dans une année ?
   icônes: 👚
   formule:
     somme:

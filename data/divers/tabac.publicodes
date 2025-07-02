@@ -20,9 +20,9 @@ divers . tabac . consommation:
   unité: cigarette
 
 divers . tabac . consommation par semaine:
-  question: Quelle est votre consommation par semaine de tabac ?
+  question: Quelle est la consommation cumulée par semaine de tabac des membres du foyer qui fument?
   description: |
-    💡 Renseignez ici votre consommation de paquets de cigarettes par semaine. On considère qu'un paquet contient 20 cigarettes.
+    💡 Renseignez ici la somme des consommatios de paquets de cigarettes par semaine de tous les membres du foyer qui sont fumeurs. On considère qu'un paquet contient 20 cigarettes.
     Si vous fumez des roulées, pensez à adapter votre calcul.
 
     > La cigarette électronique n'est pas encore prise en compte dans nos calculs, faute de données !
@@ -32,10 +32,11 @@ divers . tabac . consommation par semaine:
     Nous considérons une limite haute de 3 paquets par jour.
   par défaut: 0.5
   suggestions:
-    ❌ Je ne fume jamais: 0
+    ❌ Personne ne fume: 0
     Un paquet / mois: 0.25
     Un paquet / semaine: 1
     Un paquet / jour: 7
+    Deux paquets / jour: 14
   unité: paquet/semaine
   note: |
     D'après l'étude INSEE sur les [dépenses des ménages en 2017](https://www.insee.fr/fr/statistiques/4648319?sommaire=4648339), un ménage dépense en moyenne 402€ par an pour l'achat de tabac (tous ménages confondus).

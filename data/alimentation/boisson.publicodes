@@ -13,33 +13,33 @@ alimentation . boisson . chaude:
       - thé . nombre
       - chocolat chaud . nombre
       - chicorée . nombre
-    suggestions:
-      pas de boisson chaude:
-        café . nombre: 0
-        thé . nombre: 0
-        chocolat chaud . nombre: 0
-        chicorée . nombre: 0
-      un café:
-        café . nombre: 1
-        thé . nombre: 0
-        chocolat chaud . nombre: 0
-        chicorée . nombre: 0
-      beaucoup de café:
-        café . nombre: 4
-        thé . nombre: 0
-        chocolat chaud . nombre: 0
-        chicorée . nombre: 0
-      un café et un thé:
-        café . nombre: 1
-        thé . nombre: 1
-        chocolat chaud . nombre: 0
-        chicorée . nombre: 0
-      un chocolat chaud:
-        café . nombre: 0
-        thé . nombre: 0
-        chocolat chaud . nombre: 1
-        chicorée . nombre: 0
-  question: Quelle est votre consommation de boissons chaudes par jour (en nombre de tasses) ?
+    #suggestions:
+    #  pas de boisson chaude:
+    #   café . nombre: 0
+    #    thé . nombre: 0
+    #    chocolat chaud . nombre: 0
+    #    chicorée . nombre: 0
+    #  un café:
+    #    café . nombre: 1
+    #    thé . nombre: 0
+    #    chocolat chaud . nombre: 0
+    #    chicorée . nombre: 0
+    #  beaucoup de café:
+    #    café . nombre: 4
+    #    thé . nombre: 0
+    #    chocolat chaud . nombre: 0
+    #    chicorée . nombre: 0
+    #  un café et un thé:
+    #    café . nombre: 1
+    #    thé . nombre: 1
+    #    chocolat chaud . nombre: 0
+    #    chicorée . nombre: 0
+    #  un chocolat chaud:
+    #    café . nombre: 0
+    #    thé . nombre: 0
+    #    chocolat chaud . nombre: 1
+    #    chicorée . nombre: 0
+  question: Quelle est votre consommation de boissons chaudes au sein du foyer en nombre de tasses totales par jour ?
   icônes: ☕️🫖
   description: |
     Renseignez ici ce que vous consommez lors d'une journée type (dont le petit-déjeuner). Vos consommations occasionnelles sont considérées comme négligeables.
@@ -340,7 +340,7 @@ alimentation . boisson . eau en bouteille:
       - sinon: consommation moyenne * empreinte
 
 alimentation . boisson . eau en bouteille . consommateur:
-  question: Buvez-vous votre eau en bouteille ?
+  question: Buvez-vous votre eau en bouteille au sein du foyer ?
   description: |
     Nous cherchons à capter ici si votre consommation d'eau en bouteille est très régulière : cochez oui seulement si vous buvez de l'eau en bouteille chaque jour.
 
@@ -434,14 +434,14 @@ alimentation . boisson . sucrées . facteur jus de fruits eau:
 
 alimentation . boisson . sucrées . litres:
   titre: Consommation de boissons sucrées
-  question: Quelle est votre consommation par semaine de sodas, jus de fruits, etc. ?
-  suggestions:
-    nulle: 0
-    ponctuelle: 1
-    quotidienne: 3
+  question: Quelle est votre consommation par semaine de boissons (sodas, jus de fruits, etc...) au sein du foyer ?
+  #suggestions:
+    #nulle: 0
+    #ponctuelle: 1
+    #quotidienne: 3
   par défaut: 1
   plancher: 0
-  plafond: 20
+  plafond: 100
   unité: l/semaine
   note: La consommation de sodas et boissons sucrées en France est en moyenne de 50,9 litres par habitant ([source](https://www.sante-et-nutrition.com/consommation-soda-france/)) soit à peu près 1 litre par semaine.
 
@@ -520,13 +520,13 @@ alimentation . boisson . alcool . facteur cocktail eau:
 
 alimentation . boisson . alcool . litres:
   titre: Consommation d'alcool
-  question: Quelle est votre consommation par semaine d'alcool (vin, bière, etc.) ?
-  suggestions:
-    nulle: 0
-    ponctuelle: 1
-    quotidienne: 3
+  question: Quelle est la consommation totale par semaine d'alcool (vin, bière, etc.) par les membres du foyer ?
+  #suggestions:
+  #  nulle: 0
+  #  ponctuelle: 1
+  #  quotidienne: 3
   par défaut: 1.5
   plancher: 0
-  plafond: 20
+  plafond: 100
   unité: l/semaine
   note: La consommation d'alcool en France est de 79,6 litres d'alcool, tous alcools confondus, soit à peu près 1,5 litres par semaine ([source](https://www.insee.fr/fr/statistiques/4319377#graphique-figure2))

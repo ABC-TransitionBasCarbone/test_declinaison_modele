@@ -74,39 +74,40 @@ alimentation . plats:
       - viande rouge . nombre
       - poisson gras . nombre
       - poisson blanc . nombre
-    suggestions:
-      végétalien:
-        végétalien . nombre: 14
-        végétarien . nombre: 0
-        viande blanche . nombre: 0
-        viande rouge . nombre: 0
-        poisson gras . nombre: 0
-        poisson blanc . nombre: 0
-      végétarien:
-        végétalien . nombre: 3
-        végétarien . nombre: 11
-        viande blanche . nombre: 0
-        viande rouge . nombre: 0
-        poisson gras . nombre: 0
-        poisson blanc . nombre: 0
-      peu de viande:
-        végétalien . nombre: 1
-        végétarien . nombre: 7
-        viande blanche . nombre: 4
-        viande rouge . nombre: 0
-        poisson gras . nombre: 1
-        poisson blanc . nombre: 1
-      viande chaque jour:
-        végétalien . nombre: 0
-        végétarien . nombre: 0
-        viande blanche . nombre: 6
-        viande rouge . nombre: 6
-        poisson gras . nombre: 1
-        poisson blanc . nombre: 1
-  question: Choisissez les 14 repas (déjeuners et dîners) de votre semaine-type
+    #suggestions:
+    #  végétalien:
+    #    végétalien . nombre: 14
+    #    végétarien . nombre: 0
+    #    viande blanche . nombre: 0
+    #    viande rouge . nombre: 0
+    #    poisson gras . nombre: 0
+    #    poisson blanc . nombre: 0
+    #  végétarien:
+    #    végétalien . nombre: 3
+    #    végétarien . nombre: 11
+    #    viande blanche . nombre: 0
+    #    viande rouge . nombre: 0
+    #    poisson gras . nombre: 0
+    #    poisson blanc . nombre: 0
+    #  peu de viande:
+    #    végétalien . nombre: 1
+    #    végétarien . nombre: 7
+    #    viande blanche . nombre: 4
+    #    viande rouge . nombre: 0
+    #    poisson gras . nombre: 1
+    #    poisson blanc . nombre: 1
+    #  viande chaque jour:
+    #    végétalien . nombre: 0
+    #    végétarien . nombre: 0
+    #    viande blanche . nombre: 6
+    #    viande rouge . nombre: 6
+    #    poisson gras . nombre: 1
+    #    poisson blanc . nombre: 1
+  question: Choisissez les repas (déjeuners et dîners) de la semaine-type au sein du foyer (14 repas par personne)
+  # Rendre dynamique le nombre en fonction des répondants ?
   titre: Empreinte des repas
   description: |
-    Choisissez les plats qui représentent votre semaine type. A priori, vous en aurez 14 : 7 déjeuners et 7 dîners. Mais vous pouvez néanmoins en saisir moins, ou plus.
+    Choisissez les plats qui représentent votre semaine type. A priori, vous en aurez 14 par personne : 7 déjeuners et 7 dîners. Mais vous pouvez néanmoins en saisir moins, ou plus.
 
     Les menus ont été travaillés pour être représentatifs des consommations alimentaires des français.
   formule:
@@ -426,7 +427,31 @@ alimentation . petit déjeuner . par semaine:
 
 alimentation . petit déjeuner . par jour:
   titre: Empreinte hebdo petit déjeuner
-  formule: alimentation . petit déjeuner * 1 repas/jour
+#  formule: alimentation . petit déjeuner . total * 1 repas/jour
+  formule:
+    variations:
+      - si: pratique
+        alors: alimentation . petit déjeuner
+      - sinon:
+          somme:
+            - alimentation . petit déjeuner . membre 1 
+            - alimentation . petit déjeuner . membre 2
+            # Ajoutez autant de membres que nécessaire
+
+alimentation . petit déjeuner . pratique:
+  question: Les membres du foyer prennent-ils le même type de petit déjeuner ?
+  par défaut: oui
+
+#alimentation . petit déjeuner . total:
+#  formule:
+#    variations:
+#      - si: alimentation . petit déjeuner . pratique = 'oui'
+#        alors: alimentation . petit déjeuner
+#      - sinon:
+#          somme:
+#            - alimentation . petit déjeuner . membre 1 
+#            - alimentation . petit déjeuner . membre 2
+#            # Ajoutez autant de membres que nécessaire
 
 alimentation . petit déjeuner:
   formule:
@@ -442,7 +467,61 @@ alimentation . petit déjeuner:
       - sinon: 0
 
 alimentation . petit déjeuner . type:
-  question: Quel petit-déjeuner vous correspond le plus ?
+  question: Quel petit-déjeuner correspond le plus aux habitudes du foyer ?
+  description: |
+    Si vous hésitez, choisissez celui qui se rapproche le plus de vos habitudes.
+
+    Votre consommation de jus de fruits / café / thé / chocolat chaud sera comptabilisée dans les questions dédiées aux boissons.
+  par défaut: "'continental'"
+  une possibilité:
+    - continental
+    - lait céréales
+    - britannique
+    - végétalien
+    - aucun
+
+alimentation . petit déjeuner . membre 1:
+  formule:
+    variations:
+      - si: type = 'continental'
+        alors: continental
+      - si: type = 'lait céréales'
+        alors: lait céréales
+      - si: type = 'britannique'
+        alors: britannique
+      - si: type = 'végétalien'
+        alors: végétalien
+      - sinon: 0
+
+alimentation . petit déjeuner . membre 1 . type:
+  question: Quel petit-déjeuner correspond le plus au membre 1 ?
+  description: |
+    Si vous hésitez, choisissez celui qui se rapproche le plus de vos habitudes.
+
+    Votre consommation de jus de fruits / café / thé / chocolat chaud sera comptabilisée dans les questions dédiées aux boissons.
+  par défaut: "'continental'"
+  une possibilité:
+    - continental
+    - lait céréales
+    - britannique
+    - végétalien
+    - aucun
+
+alimentation . petit déjeuner . membre 2:
+  formule:
+    variations:
+      - si: type = 'continental'
+        alors: continental
+      - si: type = 'lait céréales'
+        alors: lait céréales
+      - si: type = 'britannique'
+        alors: britannique
+      - si: type = 'végétalien'
+        alors: végétalien
+      - sinon: 0
+
+alimentation . petit déjeuner . membre 2 . type:
+  question: Quel petit-déjeuner correspond le plus au membre 2 ?
   description: |
     Si vous hésitez, choisissez celui qui se rapproche le plus de vos habitudes.
 
@@ -669,6 +748,46 @@ alimentation . petit déjeuner . type . végétalien:
   icônes: 🍌🍎
 
 alimentation . petit déjeuner . type . aucun:
+  titre: Pas de petit-dej'
+  icônes: ❌
+
+alimentation . petit déjeuner . membre 1 . type . continental:
+  icônes: 🥐🥖
+  titre: Pain ou viennoiserie
+
+alimentation . petit déjeuner . membre 1 . type . lait céréales:
+  icônes: 🥣🎑
+  titre: Produit laitier et céréales
+
+alimentation . petit déjeuner . membre 1 . type . britannique:
+  titre: Salé (type britannique)
+  icônes: 🍳🥓
+
+alimentation . petit déjeuner . membre 1 . type . végétalien:
+  titre: Fruits
+  icônes: 🍌🍎
+
+alimentation . petit déjeuner . membre 1 . type . aucun:
+  titre: Pas de petit-dej'
+  icônes: ❌
+
+alimentation . petit déjeuner . membre 2 . type . continental:
+  icônes: 🥐🥖
+  titre: Pain ou viennoiserie
+
+alimentation . petit déjeuner . membre 2 . type . lait céréales:
+  icônes: 🥣🎑
+  titre: Produit laitier et céréales
+
+alimentation . petit déjeuner . membre 2 . type . britannique:
+  titre: Salé (type britannique)
+  icônes: 🍳🥓
+
+alimentation . petit déjeuner . membre 2 . type . végétalien:
+  titre: Fruits
+  icônes: 🍌🍎
+
+alimentation . petit déjeuner . membre 2 . type . aucun:
   titre: Pas de petit-dej'
   icônes: ❌
 

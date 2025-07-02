@@ -1,7 +1,7 @@
 logement . construction:
   non applicable si: métrique != "carbone"
   icônes: 🧱
-  formule: surface * empreinte amortie / habitants
+  formule: surface * empreinte amortie
   note: |
     Dans une première approche, Nos Gestes Climat considérait qu'un logement était amorti entièrement au bout de 50 ans, sans considérer les travaux de rafraîchissement et de rénovation. Nous avons décidé de revoir notre copie pour prendre en compte ces éléments.
 

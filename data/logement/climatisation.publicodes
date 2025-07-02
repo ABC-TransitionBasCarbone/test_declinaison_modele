@@ -2,7 +2,7 @@ logement . climatisation:
   non applicable si: métrique != "carbone"
   icônes: ❄️
   titre: Climatisation
-  formule: empreinte climatiseurs / habitants
+  formule: empreinte climatiseurs
   description: |
     Nous estimons ici l'empreinte de la climatisation.
     Son empreinte est quadruple :

@@ -11,7 +11,7 @@ divers . électroménager:
     Nous considérons que tous les appareils électroménagers sont utilisés par l'ensemble du foyer, même si potentiellement, certains ne le sont qu'à titre individuel, c'est une limitation du test.
 
     Les durées de vies des appareils évoluent en fonction du coefficient de préservation déterminé par la question portant sur les efforts pour préserver ses équipements.
-  formule: appareils / logement . habitants
+  formule: appareils
 
 divers . électroménager . appareils:
   mosaique:
@@ -92,7 +92,7 @@ divers . électroménager . appareils:
         cafetière . nombre: 1
         aspirateur . nombre: 1
         robot cuisine . nombre: 0
-  question: Quels appareils électroménagers possédez-vous ?
+  question: Quels appareils électroménagers possédez-vous au sein du foyer ?
   description: |
     Cette liste permet de comptabiliser les empreintes de construction de ces objets. L'empreinte d'usage, elle, est indirectement comprise dans votre facture d'électricité.
 

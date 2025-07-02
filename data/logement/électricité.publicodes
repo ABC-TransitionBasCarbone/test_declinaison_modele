@@ -1,6 +1,6 @@
 logement . électricité:
   icônes: ⚡
-  formule: empreinte / habitants
+  formule: empreinte
 
 logement . électricité . empreinte:
   formule: consommation totale * empreinte au kWh
